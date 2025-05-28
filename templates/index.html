@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda Tabú RCC</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="leyenda">Raul Ciriaco Castillo - Método o Algoritmo Tabú</div>
+
+    <h1>Optimización de Ruta con Búsqueda Tabú</h1>
+
+    <div class="contenedor">
+        <form action="/solve" method="post">
+            <label for="max_iteraciones">Máx. Iteraciones:</label>
+            <input type="number" name="max_iteraciones" required>
+
+            <label for="memoria_tabu_tamano">Tamaño de Memoria Tabú:</label>
+            <input type="number" name="memoria_tabu_tamano" required>
+
+            <label for="temperatura_normal">Temperatura Normal:</label>
+            <input type="number" step="0.1" name="temperatura_normal" required>
+
+            <label for="temperatura_minima">Temperatura Mínima:</label>
+            <input type="number" step="0.1" name="temperatura_minima" required>
+
+            <label for="velocidad_enfriamiento">Velocidad de Enfriamiento:</label>
+            <input type="number" step="0.01" name="velocidad_enfriamiento" required>
+
+            <label for="origin_city">Ciudad Origen:</label>
+            <select name="origin_city">
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="destination_city">Ciudad Destino:</label>
+            <select name="destination_city">
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Calcular Ruta</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            fetch("/solve", {
+                method: "POST",
+                body: new FormData(event.target)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerHTML =
+                    `<h2>Ruta óptima:</h2><p>${data.ruta.join(" → ")}</p>
+                     <h3>Distancia Total: ${data.distancia_total.toFixed(2)} km</h3>`;
+            });
+        });
+    </script>
+
+</body>
+</html>

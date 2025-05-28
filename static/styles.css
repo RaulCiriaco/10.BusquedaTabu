@@ -1,0 +1,70 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(45deg, #ff6f61, #6bff61, #61a3ff, #f861ff);
+    background-size: 400% 400%;
+    animation: animacionFondo 8s infinite alternate;
+    color: white;
+    position: relative;
+}
+
+@keyframes animacionFondo {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
+    height: 90%;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+label, select, input {
+    display: block;
+    margin: 15px auto;
+    font-size: 1.2rem;
+    width: 80%;
+}
+
+button {
+    background: linear-gradient(45deg, #ff6f61, #61a3ff);
+    border: none;
+    padding: 12px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #61a3ff, #ff6f61);
+    transform: scale(1.05);
+}
+
+/* Leyenda personalizada */
+.leyenda {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
